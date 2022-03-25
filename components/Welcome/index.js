@@ -4,7 +4,6 @@ import styles from './Welcome.module.css';
 const Welcome = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [fadeIn, setFadeIn] = useState(true);
-  const [fadeOut, setFadeOut] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -13,43 +12,37 @@ const Welcome = () => {
     .then(res => setData(res))
   }, []);
 
-  const handleIndex = () => {
-    if(currentWordIndex < data.length - 1) {
-      setFadeIn(false);
-      setFadeOut(true);
+  const nextWord = () => {
+    setFadeIn(false);
   
-      setTimeout(() => {
-        setCurrentWordIndex(prevState => prevState + 1);
-        setFadeIn(true);
-        setFadeOut(false);
-      }, 500);
-    } else {
-      setFadeIn(false);
-      setFadeOut(true);
-  
-      setTimeout(() => {
-        setCurrentWordIndex(0);
-        setFadeIn(true);
-        setFadeOut(false);
-      }, 500);
-    }
-    
+    setTimeout(() => {
+      setCurrentWordIndex(prevState => prevState + 1);
+      setFadeIn(true);
+    }, 500);
   };
+
+  const resetWord = () => {
+    setFadeIn(false);
   
-  const wordList = data.map((word, i) => {
-    return(
+    setTimeout(() => {
+      setCurrentWordIndex(0);
+      setFadeIn(true);
+    }, 500);
+  };
+
+  const handleIndex = () => currentWordIndex < data.length - 1 ? nextWord() : resetWord();
+  
+  const wordList = data.map((word, i) => (
       <div key={i}>
         <button
-          className={`${fadeIn ? styles.FadeIn : undefined} ${fadeOut ? styles.FadeOut : undefined}`}
-          
+          className={`${fadeIn ? styles.FadeIn : styles.FadeOut}`}
           onClick={handleIndex}
-          disabled={fadeOut}
+          disabled={!fadeIn}
         >
           {word}
         </button>
       </div>
-    );
-  });
+  ));
 
   return (
     <div className={styles.Welcome}>
