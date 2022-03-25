@@ -1,29 +1,20 @@
-import React,  { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Welcome.module.css';
 
 const Welcome = () => {
-  const words = [
-    'Welcome',
-    'to',
-    'the',
-    'end',
-    'of',
-    'everything',
-    'and',
-    'the',
-    'beginning',
-    'of',
-    'nothing',
-    'new.',
-    'RESTART'
-  ];
-  
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [fadeIn, setFadeIn] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/words`)
+    .then(res => res.json())
+    .then(res => setData(res))
+  }, []);
 
   const handleIndex = () => {
-    if(currentWordIndex >= words.length - 1) {
+    if(currentWordIndex >= data.length - 1) {
       setFadeIn(false);
       setFadeOut(true);
   
@@ -45,7 +36,7 @@ const Welcome = () => {
     
   };
   
-  const wordList = words.map((word, i) => {
+  const wordList = data.map((word, i) => {
     return(
       <div key={i}>
         <button
@@ -59,6 +50,8 @@ const Welcome = () => {
       </div>
     );
   });
+
+  console.log({ data });
 
   return (
     <div className={styles.Welcome}>
