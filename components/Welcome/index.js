@@ -31,22 +31,18 @@ const Welcome = () => {
   };
 
   const handleIndex = () => currentWordIndex < data.length - 1 ? nextWord() : resetWord();
-  
-  const wordList = data.map((word, i) => (
-      <div key={i}>
+
+  return (
+    <div className={styles.Welcome}>
+      <div>
         <button
           className={`${fadeIn ? styles.FadeIn : styles.FadeOut}`}
           onClick={handleIndex}
           disabled={!fadeIn}
         >
-          {word}
+          {data[currentWordIndex]}
         </button>
       </div>
-  ));
-
-  return (
-    <div className={styles.Welcome}>
-      {wordList[currentWordIndex]}
     </div>
   );
 };
