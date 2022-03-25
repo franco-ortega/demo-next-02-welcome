@@ -1,0 +1,50 @@
+.Welcome {
+  background-color: rgb(128, 128, 128);
+  height: 100vh;
+  position: relative;
+}
+
+.Welcome div {
+  background-color: rgb(255, 255, 255, 0.5);
+  border-radius: 50px;
+  box-shadow: inset 0 0 0.75rem 0.75rem rgb(128, 128, 128);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Welcome button {
+  background-color: transparent;
+  border: transparent;
+  border-radius: inherit;
+  font-size: 2rem;
+  height: 5rem;
+  width: 15rem;
+}
+
+.FadeOut {
+  animation: fadeOut 500ms;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.FadeIn {
+  animation: fadeIn 500ms;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
