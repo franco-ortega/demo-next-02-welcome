@@ -62,9 +62,7 @@ const Welcome = () => {
 
   return (
     <div className={styles.Welcome}>
-      <div>
-        {wordList[currentWordIndex]}
-      </div>
+      {wordList[currentWordIndex]}
     </div>
   );
 };
