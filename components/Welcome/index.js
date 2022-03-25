@@ -14,12 +14,12 @@ const Welcome = () => {
   }, []);
 
   const handleIndex = () => {
-    if(currentWordIndex >= data.length - 1) {
+    if(currentWordIndex < data.length - 1) {
       setFadeIn(false);
       setFadeOut(true);
   
       setTimeout(() => {
-        setCurrentWordIndex(0);
+        setCurrentWordIndex(prevState => prevState + 1);
         setFadeIn(true);
         setFadeOut(false);
       }, 500);
@@ -28,7 +28,7 @@ const Welcome = () => {
       setFadeOut(true);
   
       setTimeout(() => {
-        setCurrentWordIndex(prevState => prevState + 1);
+        setCurrentWordIndex(0);
         setFadeIn(true);
         setFadeOut(false);
       }, 500);
@@ -50,8 +50,6 @@ const Welcome = () => {
       </div>
     );
   });
-
-  console.log({ data });
 
   return (
     <div className={styles.Welcome}>
