@@ -6,9 +6,6 @@
 }
 
 .Welcome div {
-  background-color: rgb(255, 255, 255, 0.5);
-  border-radius: 50px;
-  border-width: 0px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -17,10 +14,8 @@
 
 .Welcome button {
   background-color: transparent;
-  border: transparent;
   border-radius: inherit;
   border-width: 0px;
-  box-shadow: 0 0 6.75rem 6.5rem rgb(255, 255, 255, 0.5);
   font-size: 2rem;
   height: 5rem;
   width: 15rem;
